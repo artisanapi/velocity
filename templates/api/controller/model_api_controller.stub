@@ -1,0 +1,75 @@
+<?php
+
+namespace $NAMESPACE_API_CONTROLLER$;
+
+use $NAMESPACE_API_REQUEST$\Create$MODEL_NAME$APIRequest;
+use $NAMESPACE_API_REQUEST$\Update$MODEL_NAME$APIRequest;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use Illuminate\Http\Request;
+use App\Http\Resources\$MODEL_NAME$Resource;
+use $NAMESPACE_API_CONTROLLER$\APIController;
+use Illuminate\Http\JsonResponse;
+
+
+$DOC_CONTROLLER$
+class $MODEL_NAME$APIController extends APIController
+{
+    /**
+     * $MODEL_NAME$APIController constructor.
+     */
+    public function __construct()
+    {
+        $this->authorizeResource($MODEL_NAME$::class, '$MODEL_NAME_CAMEL$');
+    }
+
+    $DOC_INDEX$
+    public function index(Request $request)
+    {
+        $result = $MODEL_NAME$::paginate();
+        return $MODEL_NAME$Resource::collection($result)
+            ->response()
+            ->setStatusCode(200);
+    }
+
+    $DOC_STORE$
+    public function store(Create$MODEL_NAME$APIRequest $request)
+    {
+        $input = $request->all();
+
+        /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
+        $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::create($input);
+
+        return $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$)
+            ->response()
+            ->setStatusCode(201);
+     }
+
+    $DOC_SHOW$
+    public function show($MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        return $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$)
+            ->response()
+            ->setStatusCode(200);
+    }
+
+    $DOC_UPDATE$
+    public function update($MODEL_NAME$ $$MODEL_NAME_CAMEL$, Update$MODEL_NAME$APIRequest $request)
+    {
+        $$MODEL_NAME_CAMEL$->fill($request->all());
+        $$MODEL_NAME_CAMEL$->save();
+
+        return $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$)
+            ->response()
+            ->setStatusCode(200);
+    }
+
+    $DOC_DESTROY$
+    public function destroy($MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        $$MODEL_NAME_CAMEL$->delete();
+
+        return $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$)
+            ->response()
+            ->setStatusCode(200);
+    }
+}

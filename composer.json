@@ -1,0 +1,53 @@
+{
+    "name": "artisanapi/velocity",
+    "type": "library",
+    "description": "Artisan command for generating API (CRUD)",
+    "keywords": [
+        "laravel",
+        "api",
+        "model",
+        "request",
+        "migration",
+        "model",
+        "crud",
+        "test",
+        "generator",
+        "scaffold"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Javier Santos",
+            "email": "holla@artisanapi.dev"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": "^6.0.0",
+        "laracasts/flash": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "ArtisanApi\\Velocity\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\ArtisanApi\\Velocity\\ArtisanApiVelocityServiceProvider"
+            ]
+        }
+    }
+}

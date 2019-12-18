@@ -1,0 +1,9 @@
+<?php
+
+namespace $NAMESPACE_API_REQUEST$;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class APIRequest extends FormRequest
+{
+}

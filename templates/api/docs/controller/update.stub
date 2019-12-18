@@ -1,0 +1,9 @@
+/**
+     * Update the specified $MODEL_NAME$ in storage.
+     * PUT/PATCH /$MODEL_NAME_PLURAL_CAMEL$/{id}
+     *
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     * @param Update$MODEL_NAME$APIRequest $request
+     *
+     * @return JsonResponse
+     */

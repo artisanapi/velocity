@@ -1,0 +1,122 @@
+<?php
+
+namespace $NAMESPACE_API_TESTS$;
+
+use App\Http\Resources\$MODEL_NAME$Resource;
+use App\Models\$MODEL_NAME$;
+use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class $MODEL_NAME$Test extends TestCase
+{
+    use RefreshDatabase,
+        WithFaker;
+
+    /**
+     * @return void
+     */
+    public function test$MODEL_NAME$CanBeIndexed()
+    {
+        $$MODEL_NAME_PLURAL_CAMEL$ = factory($MODEL_NAME$::class, 16)->create();
+        $resource = $MODEL_NAME$Resource::collection($MODEL_NAME$::paginate()->withPath(url('/api/$MODEL_NAME_PLURAL_SNAKE$')));
+        $expectedJson = json_decode($resource->response()->content(), true);
+        $response = $this->getJson('/api/$MODEL_NAME_PLURAL_SNAKE$');
+        $response
+            ->assertExactJson($expectedJson)
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function test$MODEL_NAME$CanBeCreated()
+    {
+        $$MODEL_NAME_CAMEL$ = factory($MODEL_NAME$::class)->make();
+        $this->assertEquals(0, $MODEL_NAME$::all()->count(), 'Assert there is not $MODEL_NAME_CAMEL$ in DB');
+
+        $response = $this->postJson('/api/$MODEL_NAME_PLURAL_SNAKE$', $$MODEL_NAME_CAMEL$->toArray());
+        $this->assertEquals(1, $MODEL_NAME$::all()->count(), 'Assert there is one $MODEL_NAME_CAMEL$ in DB');
+
+        $$MODEL_NAME_CAMEL$InDB = $MODEL_NAME$::first();
+        $this->assertNotNull($$MODEL_NAME_CAMEL$InDB);
+
+        $resource = $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$InDB);
+        $expectedJson = json_decode($resource->response()->content(), true);
+
+        $response
+            ->assertExactJson($expectedJson)
+            ->assertStatus(201);
+    }
+
+    /**
+     * @return void
+     */
+    public function test$MODEL_NAME$CanBeShown()
+    {
+        $$MODEL_NAME_CAMEL$ = factory($MODEL_NAME$::class)->create();
+        $resource = $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$);
+        $expectedJson = json_decode($resource->response()->content(), true);
+
+        $response = $this->getJson('/api/$MODEL_NAME_PLURAL_SNAKE$/' . $$MODEL_NAME_CAMEL$->id);
+
+        $response
+            ->assertExactJson($expectedJson)
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function test$MODEL_NAME$CanBeUpdated()
+    {
+        $$MODEL_NAME_CAMEL$ = factory($MODEL_NAME$::class)->create([
+            'created_at' => Carbon::now()->subMinutes(5),
+            'updated_at' => Carbon::now()->subMinutes(5),
+        ]);
+
+        $snapshot = $$MODEL_NAME_CAMEL$->toArray();
+        $fillables = $$MODEL_NAME_CAMEL$->fillable;
+
+        $newData = collect(factory($MODEL_NAME$::class)->make()->toArray())
+                    ->only($fillables)
+                    ->toArray();
+
+        $response = $this->patchJson('/api/$MODEL_NAME_PLURAL_SNAKE$/' . $$MODEL_NAME_CAMEL$->id, $newData);
+
+        $$MODEL_NAME_CAMEL$->refresh();
+
+        $resource = $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$);
+        $expectedJson = json_decode($resource->response()->content(), true);
+
+        $response
+            ->assertExactJson($expectedJson)
+            ->assertStatus(200);
+
+        $this->assertNotEquals($snapshot['updated_at'], $$MODEL_NAME_CAMEL$->updated_at);
+        foreach ($fillables as $field)
+        {
+            $this->assertEquals($newData[$field], $$MODEL_NAME_CAMEL$->$field);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public function test$MODEL_NAME$CanBeDeleted()
+    {
+        $$MODEL_NAME_CAMEL$ = factory($MODEL_NAME$::class)->create();
+        $this->assertEquals(1, $MODEL_NAME$::all()->count(), 'Assert there is one $MODEL_NAME_CAMEL$ in DB');
+
+        $resource = $MODEL_NAME$Resource::make($$MODEL_NAME_CAMEL$);
+        $expectedJson = json_decode($resource->response()->content(), true);
+
+        $response = $this->deleteJson('/api/$MODEL_NAME_PLURAL_SNAKE$/' . $$MODEL_NAME_CAMEL$->id);
+        $this->assertEquals(0, $MODEL_NAME$::all()->count(), 'Assert there is not $MODEL_NAME_CAMEL$ in DB');
+
+        $response
+            ->assertExactJson($expectedJson)
+            ->assertStatus(200);
+    }
+}

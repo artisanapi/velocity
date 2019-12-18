@@ -1,0 +1,98 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true
+    },
+    {
+        "name": "title",
+        "dbType": "string",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "post_date",
+        "dbType": "dateTime",
+        "searchable": true
+    },
+    {
+        "name": "body",
+        "dbType": "text"
+    },
+    {
+        "name": "password",
+        "dbType": "string",
+        "searchable": false
+    },
+    {
+        "name": "token",
+        "dbType": "string",
+        "searchable": false
+    },
+    {
+        "name": "email",
+        "dbType": "string",
+        "searchable": true
+    },
+    {
+        "name": "author_gender",
+        "dbType": "integer"
+    },
+    {
+        "name": "post_type",
+        "dbType": "string",
+        "searchable": true
+    },
+    {
+        "name": "post_visits",
+        "dbType": "integer"
+    },
+    {
+        "name": "category",
+        "dbType": "string",
+        "searchable": true
+    },
+    {
+        "name": "category_short",
+        "dbType": "string"
+    },
+    {
+        "name": "is_private",
+        "dbType": "boolean"
+    },
+    {
+        "name": "writer_id",
+        "dbType": "integer:unsigned:default,0:foreign,writers,id",
+        "relation": "mt1,Writer,writer_id,id"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Comment"
+    },
+    {
+      "type": "relation",
+      "relation": "1tm,User:customRelationName,user_id,id"
+    },
+    {
+        "name": "users",
+        "type": "relation",
+        "relation": "mtm,Role,user_roles,user_id,role_id"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "validations": "",
+        "searchable": false,
+        "fillable": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "validations": "",
+        "searchable": false,
+        "fillable": false
+    }
+]

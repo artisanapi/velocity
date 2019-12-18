@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Policies;
+
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use App\User;
+
+class $MODEL_NAME$Policy extends Policy
+{
+    /**
+     * Determine whether the user can view any models $MODEL_NAME_CAMEL$.
+     *
+     * @param User $user
+     * @return mixed
+     */
+    public function viewAny(?User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the models $MODEL_NAME_CAMEL$.
+     *
+     * @param User   $user
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     * @return mixed
+     */
+    public function view(?User $user, $MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can create models people.
+     *
+     * @param User $user
+     * @return mixed
+     */
+    public function create(?User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can update the models $MODEL_NAME_CAMEL$.
+     *
+     * @param User   $user
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     * @return mixed
+     */
+    public function update(?User $user, $MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can delete the models $MODEL_NAME_CAMEL$.
+     *
+     * @param User   $user
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     * @return mixed
+     */
+    public function delete(?User $user, $MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can restore the models $MODEL_NAME_CAMEL$.
+     *
+     * @param User   $user
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     * @return mixed
+     */
+    public function restore(?User $user, $MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the models $MODEL_NAME_CAMEL$.
+     *
+     * @param User   $user
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     * @return mixed
+     */
+    public function forceDelete(?User $user, $MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        return true;
+    }
+}

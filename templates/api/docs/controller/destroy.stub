@@ -1,0 +1,10 @@
+/**
+     * Remove the specified $MODEL_NAME$ from storage.
+     * DELETE /$MODEL_NAME_PLURAL_CAMEL$/{id}
+     *
+     * @param $MODEL_NAME$ $$MODEL_NAME_CAMEL$
+     *
+     * @throws \Exception
+     *
+     * @return JsonResponse
+     */
